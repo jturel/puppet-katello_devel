@@ -53,10 +53,6 @@
 #
 # $enable_deb::               Enable debian content plugin
 #
-# $candlepin_event_queue::    The queue to use for candlepin
-#
-# $candlepin_qpid_exchange::  The exchange to use for candlepin
-#
 # $github_username::          Github username to add remotes for
 #
 # $use_ssh_fork::             If true, will use SSH to configure Github fork, otherwise HTTPS.
@@ -94,8 +90,6 @@ class katello_devel (
   Boolean $enable_puppet = $katello_devel::params::enable_puppet,
   Boolean $enable_docker = $katello_devel::params::enable_docker,
   Boolean $enable_deb = $katello_devel::params::enable_deb,
-  String $candlepin_event_queue = $katello_devel::params::candlepin_event_queue,
-  String $candlepin_qpid_exchange = $katello_devel::params::candlepin_qpid_exchange,
   Optional[String] $github_username = $katello_devel::params::github_username,
   Boolean $use_ssh_fork = $katello_devel::params::use_ssh_fork,
   Optional[String] $fork_remote_name = $katello_devel::params::fork_remote_name,
@@ -148,7 +142,6 @@ class katello_devel (
   $pulp_ca_cert = $certs::ca_cert
   $crane_url = "https://${facts['fqdn']}:5000"
   $crane_ca_cert = $certs::ca_cert
-  $qpid_url = "amqp:ssl:${qpid_hostname}:5671"
 
   include certs::pulp_client
   include katello::qpid_client
