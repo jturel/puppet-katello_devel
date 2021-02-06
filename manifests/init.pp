@@ -47,17 +47,11 @@
 # @param admin_password
 #   Admin user password for Web application
 #
-# @param enable_ostree
-#   Enable ostree content plugin, this requires an ostree install
-#
 # @param enable_yum
 #   Enable rpm content plugin, including syncing of yum content
 #
 # @param enable_file
 #   Enable generic file content management
-#
-# @param enable_puppet
-#   Enable puppet content plugin
 #
 # @param enable_docker
 #   Enable docker content plugin
@@ -107,10 +101,8 @@ class katello_devel (
   String $initial_organization = $katello_devel::params::initial_organization,
   String $initial_location = $katello_devel::params::initial_location,
   String $admin_password = $katello_devel::params::admin_password,
-  Boolean $enable_ostree = $katello_devel::params::enable_ostree,
   Boolean $enable_yum = $katello_devel::params::enable_yum,
   Boolean $enable_file = $katello_devel::params::enable_file,
-  Boolean $enable_puppet = $katello_devel::params::enable_puppet,
   Boolean $enable_docker = $katello_devel::params::enable_docker,
   Boolean $enable_deb = $katello_devel::params::enable_deb,
   Optional[String] $github_username = $katello_devel::params::github_username,
@@ -141,10 +133,8 @@ class katello_devel (
   }
 
   class { 'katello::globals':
-    enable_ostree => $enable_ostree,
     enable_yum    => $enable_yum,
     enable_file   => $enable_file,
-    enable_puppet => $enable_puppet,
     enable_docker => $enable_docker,
     enable_deb    => $enable_deb,
   }
